@@ -1,0 +1,345 @@
+
+
+:root{
+  --bg: #ffffff;
+  --card-bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #e76f51;
+  --card-shadow: 0 6px 18px rgba(18, 20, 22, 0.06);
+  --glass: rgba(255,255,255,0.6);
+  --max-width: 1100px;
+}
+
+/* Dark mode variables (applied when body.dark-mode) */
+body.dark-mode{
+  --bg: #0b1220;
+  --card-bg: #0f1724;
+  --text: #e6eef6;
+  --muted: #9aa6b2;
+  --accent: #ffb703;
+  --card-shadow: 0 8px 20px rgba(2,6,23,0.6);
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), var(--bg));
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Layout */
+.container{
+  width:90%;
+  max-width:var(--max-width);
+  margin:0 auto;
+}
+/* Header */
+.site-header {
+  background: url("../images/light.png") no-repeat center center;
+  background-size: cover;
+  background-position: center;
+  transition: background 0.3s ease;
+  
+}
+
+/* Header nền cho dark mode */
+body.dark-mode .site-header {
+  background: url("../images/light.png") no-repeat center center;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Nội dung bên trong header */
+.header-inner {
+  display: flex;
+  justify-content: space-between; /* vẫn giữ hai đầu */
+  align-items: center;
+  width: 100%;
+  padding: 16px 40px; /* hoặc 20px nếu muốn logo gần hơn */
+  margin: 0; /* bỏ căn giữa */
+  background: transparent;
+  border-radius: 0;
+  position: relative;
+  z-index: 2; /* đảm bảo nằm trên ảnh banner */
+}
+
+body.dark-mode .header-inner {
+  background: transparent;
+  border-radius: 0;
+}
+
+/* Responsive banner */
+@media (max-width:768px){
+  .site-header {
+    height: 160px;
+    background-position: top;
+  }
+}
+
+.logo{
+  margin:0;
+  font-size:22px;
+  letter-spacing:0.6px;
+  color:var(--accent);
+}
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.logo img {
+  width: 200px;   /* tăng / giảm tuỳ ý */
+  height: 180px;
+}
+.logo-text{
+  font-size: 55px;
+  letter-spacing: 0.5px;
+}
+
+
+/* Toggle */
+/* Toggle container */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+/* Ẩn checkbox thật */
+.toggle input {
+  display: none;
+}
+
+/* Thanh trượt nền */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  border-radius: 999px;
+  background: #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background 0.3s ease;
+}
+
+/* Nút tròn */
+.slider::before {
+  content: '☀️'; /* Mặt trời mặc định */
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.35s ease, background 0.3s ease, content 0.3s ease;
+}
+
+/* Khi bật dark mode */
+.toggle input:checked + .slider {
+  background: #555; /* nền xám đậm */
+}
+
+/* Nút tròn di chuyển sang phải + đổi thành mặt trăng */
+.toggle input:checked + .slider::before {
+  transform: translateX(24px);
+  content: '🌙';
+  background: #f1c40f;
+}
+
+/* Dark mode */
+body.dark-mode .slider {
+  background: #666;
+}
+body.dark-mode .toggle input:checked + .slider {
+  background: #999;
+}
+
+/* Main grid */
+.main-grid{
+  display:grid;
+  grid-template-columns: 280px 1fr;
+  gap:28px;
+  padding:28px 0 60px;
+}
+
+/* Sidebar */
+.sidebar{
+  background:var(--card-bg);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:var(--card-shadow);
+  position:sticky;
+  top:18px;
+  align-self:start;
+}
+.search-box input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.06);
+  background:var(--glass);
+  color:var(--text);
+  margin-top:8px;
+  outline:none;
+}
+.search-box .hint{color:var(--muted); font-size:12px}
+.filters h3, .search-box h3{margin:0 0 8px 0}
+
+/* Category checkboxes */
+.category-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:8px;
+}
+.category-item{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.category-item input[type="checkbox"]{
+  width:16px; height:16px;
+  accent-color: var(--accent);
+}
+
+/* Cards list */
+.content{
+}
+.cards{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap:18px;
+}
+.card{
+  background:var(--card-bg);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:var(--card-shadow);
+  transition:transform .22s ease, box-shadow .22s ease;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+}
+.card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  display:block;
+}
+.card-body{
+  padding:12px;
+}
+.card-title{
+  margin:0;
+  font-size:16px;
+  font-weight:600;
+}
+.card-sub{
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Modal */
+.modal.hidden{display:none}
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.modal-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(2,6,23,0.5);
+}
+.modal-content{
+  position:relative;
+  max-width:900px;
+  width:95%;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--card-bg);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:var(--card-shadow);
+  z-index:1001;
+}
+.modal-close{
+  position:absolute;
+  right:12px;
+  top:12px;
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  font-size:18px;
+  cursor:pointer;
+}
+.modal-body img{
+  width:100%;
+  max-height:360px;
+  object-fit:cover;
+  border-radius:8px;
+}
+.modal-section{margin-top:14px}
+.modal-section h4{margin:0 0 8px 0}
+
+/* Ingredients/steps list */
+.ingredients, .steps{
+  padding-left:16px;
+}
+.steps li{margin-bottom:8px}
+
+/* Footer */
+.site-footer{
+  border-top:1px solid rgba(0,0,0,0.06);
+  padding:18px 0;
+  margin-top:30px;
+  text-align:center;
+  color:var(--muted);
+}
+body.dark-mode .site-footer{border-top-color: rgba(255,255,255,0.03)}
+
+/* Responsive */
+@media (max-width:880px){
+  .main-grid{grid-template-columns:1fr; padding:16px 0}
+  .sidebar{position:static}
+}
+/* --- Đẩy sidebar sát mép trái --- */
+.main-grid {
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  padding: 28px 0 60px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+

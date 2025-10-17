@@ -1,0 +1,67 @@
+
+
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CƠMê — Tra cứu công thức bằng nguyên liệu</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+  		<img src="images/logo.png" alt="CƠMê logo" class="logo-img">
+	  </a>
+      <div class="header-controls">
+        <label class="toggle">
+  			<input type="checkbox" id="modeToggle">
+  			<span class="slider"></span>
+		</label>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <aside class="sidebar">
+      <section class="search-box">
+        <h3>Tìm kiếm</h3>
+        <input type="text" id="searchInput" placeholder="Tìm theo tên hoặc nguyên liệu..." />
+      </section>
+
+      <section class="filters">
+        <h3>Loại món</h3>
+        <div id="categoryList" class="category-list">
+          <!-- Checkbox list tự động tạo bởi JS -->
+        </div>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div id="cardsContainer" class="cards">
+        <!-- Các thẻ món sẽ được tạo ở đây -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal chi tiết món -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="modalClose" class="modal-close" aria-label="Đóng">✕</button>
+      <div id="modalBody">
+        <!-- Nội dung modal được fill bởi JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> CƠMê — Tra cứu công thức nấu ăn nhanh bằng nguyên liệu có sẵn.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
